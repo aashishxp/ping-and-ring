@@ -1,0 +1,45 @@
+[project]
+name = "ping-and-ring"
+version = "0.1.0"
+description = "Autonomous AI agent capable of both text chatting (ping) and real-time voice calling (ring)."
+readme = "README.md"
+authors = [
+    { name = "aashishxp", email = "aashish4.iitd@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "ensure>=1.0.4",
+    "fastapi>=0.164.0",
+    "langchain>=1.5.0",
+    "langchain-google-genai>=4.5.0",
+    "langchain-openai>=1.8.1",
+    "langgraph>=1.2.22",
+    "langsmith>=0.15.0",
+    "pandas>=3.1.1",
+    "pydantic-settings>=2.16.3",
+    "python-box>=8.0.1",
+    "python-dotenv>=1.2.4",
+    "pyyaml>=6.0.3",
+]
+
+[project.scripts]
+ping-and-ring = "ping_and_ring:main"
+
+[build-system]
+requires = ["uv_build>=0.13.9,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.7.0",
+    "pytest>=9.2.0",
+    "ruff>=0.17.5",
+]
+
+[tool.ruff]
+target-version = "py313"
+line-length = 120
+
+[tool.ruff.lint]
+# Keeps default Flake8 rules (E, F) AND enables isort (I)
+select = ["E", "F", "I"]
