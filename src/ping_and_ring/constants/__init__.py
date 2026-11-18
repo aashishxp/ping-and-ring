@@ -4,7 +4,7 @@ from pathlib import Path
 
 # Root
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
-APP_ROOT = PROJECT_ROOT / "src" / "folio_flow"
+APP_ROOT = PROJECT_ROOT / "src" / "ping_and_ring"
 
 # Filesystem paths
 ENV_FILE_PATH = PROJECT_ROOT / ".env"
