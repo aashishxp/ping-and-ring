@@ -1,0 +1,20 @@
+# config.yaml
+app:
+  name: ping-and-ring
+  version: 1.0.0
+  description: "ping-and-ring — Autonomous AI agent capable of both text chatting (ping) and real-time voice calling (ring)."
+
+llm:
+  defaults:
+    tier: "balanced"
+    temperature: 0.2
+    max_tokens: 4000
+    timeout_seconds: 30.0
+    max_retries: 3
+  performance_tiers:
+    fast:
+      model: "openai/gpt-oss-20b"
+    balanced:
+      model: "google:gemini-3.5-flash"
+    expert:
+      model: "google:gemini-3.5-pro"
