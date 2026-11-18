@@ -13,7 +13,7 @@ llm:
     max_retries: 3
   performance_tiers:
     fast:
-      model: "openai/gpt-oss-20b"
+      model: "google:gemini-3.5-flash"
     balanced:
       model: "google:gemini-3.5-flash"
     expert:
