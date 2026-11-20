@@ -1,0 +1,28 @@
+{
+  "name": "ping-and-ring",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": ".."
+  },
+  "postCreateCommand": "uv sync --all-groups --locked",
+  "containerEnv": {
+    "UV_LINK_MODE": "copy"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+        "python.terminal.activateEnvironment": true,
+        "[python]": {
+          "editor.defaultFormatter": "charliermarsh.ruff",
+          "editor.formatOnSave": true
+        }
+      }
+    }
+  },
+  "remoteUser": "vscode"
+}
