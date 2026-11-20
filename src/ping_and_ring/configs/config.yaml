@@ -18,3 +18,7 @@ llm:
       model: "google:gemini-3.5-flash"
     expert:
       model: "google:gemini-3.5-pro"
+
+task_llm_mapping:
+  classify_intent:
+    tier: "fast"
