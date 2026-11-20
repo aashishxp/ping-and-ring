@@ -1,5 +1,9 @@
 # config.py
-from ping_and_ring.agent.model_garden.llm_factory import GoogleLLMProvider, OpenAILLMProvider
+from ping_and_ring.agent.model_garden.llm_factory import (
+    GoogleLLMProvider,
+    OpenAILLMProvider,
+    GroqLLMProvider
+)
 from ping_and_ring.constants import APP_CONFIG_FILE_PATH
 from ping_and_ring.schema import AppDetails, SecretSettings
 from ping_and_ring.utils.common import CommonUtils
@@ -7,7 +11,8 @@ from ping_and_ring.utils.common import CommonUtils
 # Registry for LLM providers
 _PROVIDER_REGISTRY = {
     "google": GoogleLLMProvider,
-    "openai": OpenAILLMProvider
+    "openai": OpenAILLMProvider,
+    "groq": GroqLLMProvider,
 }
 
 

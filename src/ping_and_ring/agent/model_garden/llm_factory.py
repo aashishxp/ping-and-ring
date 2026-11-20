@@ -5,6 +5,7 @@ from abc import ABC, abstractmethod
 from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_openai import ChatOpenAI
+from langchain_groq import ChatGroq
 
 from ping_and_ring.utils.exception import CustomException
 from ping_and_ring.utils.logger import get_logger
@@ -55,4 +56,19 @@ class OpenAILLMProvider(LLMProvider):
             return llm
         except Exception as e:
             self.logger.error("Failed to instantiate a LLM from OpenAI!")
+            raise CustomException(e, sys) from e
+
+
+class GroqLLMProvider(LLMProvider):
+    """Concrete implementation for Groq LLM provider."""
+    def __init__(self, provider_name: str, model_id: str):
+        super().__init__(provider_name, model_id)
+        self.logger = get_logger(name="model_garden/llm_factory: GroqLLMProvider")
+
+    def get_chat_model(self, **kwargs) -> BaseChatModel:
+        try:
+            llm = ChatGroq(model=self.model_id, **kwargs)
+            return llm
+        except Exception as e:
+            self.logger.error("Failed to instantiate a LLM from Groq!")
             raise CustomException(e, sys) from e
