@@ -32,6 +32,14 @@ class AppSettings:
         self.balanced_llm = self._init_llm_by_tier(performance_tier="balanced")
         self.expert_llm = self._init_llm_by_tier(performance_tier="expert")
 
+        # 4. Map tasks to LLMs based on the configuration
+        self.task_llm_mapping = {}
+        for task, config in self._raw_config.get("task_llm_mapping", {}).items():
+            tier = config.get("tier")
+            if tier not in self._performance_tiers:
+                raise ValueError(f"Unknown performance tier '{tier}' for task '{task}'")
+            self.task_llm_mapping[task] = getattr(self, f"{tier}_llm")
+
     def _init_llm_by_tier(self, performance_tier: str):
         """Merges defaults with tier overrides, fetches API keys safely, and initializes the provider."""
         if performance_tier not in self._performance_tiers:

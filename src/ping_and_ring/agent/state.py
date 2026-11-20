@@ -1,7 +1,7 @@
 from typing import Annotated, Literal, NotRequired, Required
 from uuid import UUID
 
-from langchain_core.messages import BaseMessage
+from langchain_core.messages import AnyMessage
 from langgraph.graph.message import add_messages
 from typing_extensions import Doc, TypedDict
 
@@ -11,22 +11,22 @@ class PingAndRingAgentState(TypedDict, total=False):
     Represents the state of a customer support interaction with BareONN's ping-and-ring Agent.
     """
     # 1. Conversation
-    messages: Required[
-        Annotated[
-            list[BaseMessage],
-            add_messages,
-            Doc(
-                "Complete conversation history between the customer and BareONN AI, "
-                "reduced to recent + summary when chat grows long."
-            ),
-        ]
-    ]
     conversation_id: Required[
         Annotated[
             UUID,
             Doc("Unique identifier for the conversation, used to track and retrieve the interaction history."),
         ]
     ]
+    messages: Required[
+            Annotated[
+                list[AnyMessage],
+                add_messages,
+                Doc(
+                    "Complete conversation history between the customer and BareONN AI, "
+                    "reduced to recent + summary when chat grows long."
+                ),
+            ]
+        ]
     channel: NotRequired[
         Annotated[
             Literal["chat", "voice"],
